@@ -246,7 +246,7 @@ public class IdleNotification extends Component {
      * <p>
      * NOTE: {@link MessageFormatting} can be used to format the message
      *
-     * @param text
+     * @param message
      *            the text of the Notification
      */
     public void setMessage(String message) {
