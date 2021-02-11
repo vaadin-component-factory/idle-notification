@@ -3,7 +3,7 @@
 
     <groupId>com.vaadin.componentfactory</groupId>
     <artifactId>idle-notification</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>Idle Notification</name>
     <description>An addon that displays a notification and actions to the user before session-timeout</description>
 
@@ -84,6 +84,12 @@
     </pluginRepositories>
 
     <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
             <!-- Replace artifactId with vaadin-core to use only free components -->

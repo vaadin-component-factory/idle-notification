@@ -15,11 +15,12 @@
  */
 
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 import '@vaadin/vaadin-dialog/src/vaadin-dialog.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
 import './idle-notification-shadow-styles.js';
 
-class IdleNotification extends PolymerElement {
+class IdleNotification extends ThemableMixin(PolymerElement) {
   static get properties() {
     return {
       /**
