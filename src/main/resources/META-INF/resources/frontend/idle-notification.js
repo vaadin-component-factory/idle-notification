@@ -424,11 +424,13 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
   /** @private */
   _handleExtendSessionButtonClick(e) {
     this._pokeServer();
+    this.dispatchEvent(new CustomEvent('vaadin-idle-notification-extend-session', { bubbles: true, composed: true }));
   }
 
   /** @private */
   _handleRedirectButtonClick(e) {
     if (this.redirectButtonUrl) {
+      this.dispatchEvent(new CustomEvent('vaadin-idle-notification-redirect', { bubbles: true, composed: true }));
       this._doRedirect(this.redirectButtonUrl);
     }
   }
@@ -465,6 +467,8 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
 
   /** @private */
   _handleSessionTimeout(e) {
+    this.dispatchEvent(new CustomEvent('vaadin-idle-notification-timeout', { bubbles: true, composed: true }));
+
     if (this.redirectAtTimeoutEnabled && this.redirectAtTimeoutUrl) {
       this._doRedirect(this.redirectAtTimeoutUrl);
     } else {
@@ -494,8 +498,10 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
     }
     if (opened) {
       this._updateFormattedMessage(this.beforeExpiredMessage, this.secondsBeforeNotification);
+      if(!wasOpened) this.dispatchEvent(new CustomEvent('vaadin-idle-notification-open', { bubbles: true, composed: true }));
     } else {
       this._displayProcessStarted = false;
+      if(wasOpened) this.dispatchEvent(new CustomEvent('vaadin-idle-notification-close', { bubbles: true, composed: true }));
     }
   }
 

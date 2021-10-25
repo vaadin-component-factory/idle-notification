@@ -20,10 +20,16 @@ import java.util.Objects;
 
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEvent;
+import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.DomEvent;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
+import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.server.VaadinSession;
+import com.vaadin.flow.shared.Registration;
 
 @Tag("idle-notification")
 @JsModule("./idle-notification.js")
@@ -420,6 +426,41 @@ public class IdleNotification extends Component {
     }
 
     /**
+     * Adds a open handler
+     */
+    public Registration addOpenListener(ComponentEventListener<OpenEvent> listener) {
+        return addListener(OpenEvent.class, listener);
+    }
+
+    /**
+     * Adds a close handler
+     */
+    public Registration addCloseListener(ComponentEventListener<CloseEvent> listener) {
+        return addListener(CloseEvent.class, listener);
+    }
+
+    /**
+     * Adds a session extend handler
+     */
+    public Registration addExtendSessionListener(ComponentEventListener<ExtendSessionEvent> listener) {
+        return addListener(ExtendSessionEvent.class, listener);
+    }
+
+    /**
+     * Adds a redirect handler
+     */
+    public Registration addRedirectListener(ComponentEventListener<RedirectEvent> listener) {
+        return addListener(RedirectEvent.class, listener);
+    }
+
+    /**
+     * Adds a timeout handler
+     */
+    public Registration addTimeoutListener(ComponentEventListener<TimeoutEvent> listener) {
+        return addListener(TimeoutEvent.class, listener);
+    }
+
+    /**
      * Used to extend the session from the client side
      */
     @ClientCallable
@@ -505,5 +546,30 @@ public class IdleNotification extends Component {
     private void setRedirectAtTimeoutEnabled(boolean redirectAtTimeoutEnabled) {
         this.redirectAtTimeoutEnabled = redirectAtTimeoutEnabled;
         getElement().setProperty("redirectAtTimeoutEnabled", redirectAtTimeoutEnabled);
+    }
+
+    @DomEvent("vaadin-idle-notification-open")
+    public static class OpenEvent extends ComponentEvent<IdleNotification> {
+        public OpenEvent(IdleNotification source, boolean fromClient) { super(source, fromClient); }
+    }
+
+    @DomEvent("vaadin-idle-notification-close")
+    public static class CloseEvent extends ComponentEvent<IdleNotification> {
+        public CloseEvent(IdleNotification source, boolean fromClient) { super(source, fromClient); }
+    }
+
+    @DomEvent("vaadin-idle-notification-extend-session")
+    public static class ExtendSessionEvent extends ComponentEvent<IdleNotification> {
+        public ExtendSessionEvent(IdleNotification source, boolean fromClient) { super(source, fromClient); }
+    }
+
+    @DomEvent("vaadin-idle-notification-redirect")
+    public static class RedirectEvent extends ComponentEvent<IdleNotification> {
+        public RedirectEvent(IdleNotification source, boolean fromClient) { super(source, fromClient); }
+    }
+
+    @DomEvent("vaadin-idle-notification-timeout")
+    public static class TimeoutEvent extends ComponentEvent<IdleNotification> {
+        public TimeoutEvent(IdleNotification source, boolean fromClient) { super(source, fromClient); }
     }
 }
