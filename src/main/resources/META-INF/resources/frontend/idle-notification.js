@@ -228,8 +228,8 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
     return html`
       <style>
         [part='container'] {
-          --notification-background-color: #ffc13f;
-          --notification-color: var(--lumo-contrast);
+          --notification-background-color: var(--idle-notification-background-color, #ffc13f);
+          --notification-color: var(--idle-notification-color, var(--lumo-contrast));
           color: var(--notification-color);
           display: flex;
           flex-direction: column;
@@ -280,9 +280,9 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
         }
 
         vaadin-button {
+          --fallback-border-radius: calc(var(--lumo-size-m) / 2);
           color: var(--notification-color);
-          border-radius: var(--lumo-border-radius);
-          --lumo-border-radius: calc(var(--lumo-size-m) / 2);
+          border-radius: var(--lumo-border-radius, var(--fallback-border-radius));
         }
 
         #extend-session.visible {
