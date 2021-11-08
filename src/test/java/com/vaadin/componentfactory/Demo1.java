@@ -6,9 +6,9 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinSession;
 
 @Route("DemoOne")
-public class DemoOne extends Div {
+public class Demo1 extends Div {
 
-    public DemoOne() {
+    public Demo1() {
         VaadinSession.getCurrent().getSession().setMaxInactiveInterval(65);
 
         IdleNotification idleNotification = new IdleNotification();
