@@ -235,6 +235,7 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
           flex-direction: column;
           background-color: var(--notification-background-color);
           padding: 1em;
+          border-radius: var(--lumo-border-radius-m);
         }
 
         [part='message-container'] {
@@ -281,8 +282,9 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
 
         vaadin-button {
           --fallback-border-radius: calc(var(--lumo-size-m) / 2);
-          color: var(--notification-color);
-          border-radius: var(--lumo-border-radius, var(--fallback-border-radius));
+          color: var(--idle-notification-button-color, --notification-color);
+          background-color: var(--idle-notification-button-background-color, inherit);
+          border-radius: var(--lumo-border-radius-m, var(--fallback-border-radius));
         }
 
         #extend-session.visible {
@@ -301,7 +303,7 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
 
       <vaadin-dialog id="notification-dialog" part="notification-dialog" theme="notification-dialog-theme">
         <template>
-          <div part="container">
+          <div part="container" class="idle-notification-container">
             <div part="header" class$="[[_headerVisibility]]">
               <iron-icon icon="vaadin:close-small" id="close-icon" on-click="_handleCloseIconClick"></iron-icon>
             </div>
