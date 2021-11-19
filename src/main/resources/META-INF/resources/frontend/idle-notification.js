@@ -283,13 +283,12 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
         vaadin-button {
           --fallback-border-radius: calc(var(--lumo-size-m) / 2);
           color: var(--idle-notification-button-color, --notification-color);
-          background-color: var(--idle-notification-button-background-color, inherit);
+          background-color: var(--idle-notification-button-background-color, white);
           border-radius: var(--lumo-border-radius-m, var(--fallback-border-radius));
         }
 
         #extend-session.visible {
           margin-left: 1em;
-          background-color: white;
         }
 
         #extend-session.hidden {
