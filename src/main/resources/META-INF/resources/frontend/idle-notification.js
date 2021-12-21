@@ -341,6 +341,13 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
     this._registerXhrListener();
   }
 
+  /** @protected */
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('load', this._handleLoad);
+    this._clearTimeoutObject();
+  }
+
   /** @private */
   _registerXhrListener() {
     let currRequest;
@@ -348,21 +355,24 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
     let thisComponent = this;
     XMLHttpRequest.prototype.open = function () {
       currRequest = this;
-      this.addEventListener('load', (e) => {
-        if (
-          currRequest.responseURL.includes('?v-r') &&
-          currRequest.status === 200 &&
-          !thisComponent._displayProcessStarted
-        ) {
-          thisComponent._resetTimer();
-          if (thisComponent.opened) {
-            thisComponent.opened = false;
-          }
-        }
-      });
+      this.addEventListener('load', thisComponent._handleLoad(currRequest));
       origOpen.apply(this, arguments);
     };
   }
+
+  /** @private */
+  _handleLoad(currRequest) {
+    if (
+        currRequest.responseURL.includes('?v-r') &&
+        currRequest.status === 200 &&
+        !this._displayProcessStarted
+    ) {
+      this._resetTimer();
+      if (this.opened) {
+        this.opened = false;
+      }
+    }
+  };
 
   /** @private */
   _closeButtonEnabledChanged(isCloseButtonEnabled, wasCloseButtonEnabled) {
