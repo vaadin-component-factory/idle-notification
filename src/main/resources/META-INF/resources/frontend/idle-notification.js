@@ -355,7 +355,7 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
     let thisComponent = this;
     XMLHttpRequest.prototype.open = function () {
       currRequest = this;
-      this.addEventListener('load', thisComponent._handleLoad(currRequest));
+      this.addEventListener('load', () => thisComponent._handleLoad(currRequest));
       origOpen.apply(this, arguments);
     };
   }
