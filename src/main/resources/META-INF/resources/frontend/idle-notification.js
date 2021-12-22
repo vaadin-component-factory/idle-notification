@@ -221,6 +221,12 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
 
       /** @private */
       _dialogElement: Object,
+
+      /** @private */
+      _handleLoadListener: {
+         type: Object,
+         value: null,
+      }
     };
   }
 
@@ -344,8 +350,10 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
   /** @protected */
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.removeEventListener('load', this._handleLoad);
+    this.removeEventListener('load', this._handleLoadListener);
     this._clearTimeoutObject();
+    // to not trigger _handleLoad after disconnecting the component
+    this._displayProcessStarted = true;
   }
 
   /** @private */
@@ -355,7 +363,8 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
     let thisComponent = this;
     XMLHttpRequest.prototype.open = function () {
       currRequest = this;
-      this.addEventListener('load', thisComponent._handleLoad(currRequest));
+      thisComponent._handleLoadListener = (e) => thisComponent._handleLoad(currRequest);
+      this.addEventListener('load', thisComponent._handleLoadListener);
       origOpen.apply(this, arguments);
     };
   }
