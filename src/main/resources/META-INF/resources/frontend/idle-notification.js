@@ -372,9 +372,9 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
   /** @private */
   _handleLoad(currRequest) {
     if (
-        currRequest.responseURL.includes('?v-r') &&
         currRequest.status === 200 &&
-        !this._displayProcessStarted
+        !this._displayProcessStarted &&
+        this._isVaadinRequest(currRequest)
     ) {
       this._resetTimer();
       if (this.opened) {
@@ -462,6 +462,13 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
       (e) => this._displayNotification(e),
       (this.maxInactiveInterval - this.secondsBeforeNotification) * 1000
     );
+  }
+
+  /** @private */
+  _isVaadinRequest(req) {
+    const reqUrl = new URL(req.responseURL);
+    // ignore heartbeat requests, so timeout value can be larger than heartbeat interval
+    return reqUrl.searchParams.has('v-r') && reqUrl.searchParams.get('v-r') !== 'heartbeat';
   }
 
   /** @private */
