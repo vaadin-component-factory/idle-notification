@@ -18,8 +18,7 @@ import "@vaadin/button";
 import "@vaadin/dialog";
 import { dialogRenderer } from "@vaadin/dialog/lit.js";
 import { ThemableMixin } from "@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js";
-import { css, html, LitElement } from "lit";
-import "./idle-notification-shadow-styles.js";
+import { html, LitElement } from "lit";
 
 class IdleNotification extends ThemableMixin(LitElement) {
   static get properties() {
@@ -211,95 +210,6 @@ class IdleNotification extends ThemableMixin(LitElement) {
     };
   }
 
-  static get styles() {
-    return [
-      css`
-        [part="container"] {
-          --notification-background-color: var(
-            --idle-notification-background-color,
-            #ffc13f
-          );
-          --notification-color: var(
-            --idle-notification-color,
-            var(--lumo-contrast)
-          );
-          color: var(--notification-color);
-          display: flex;
-          flex-direction: column;
-          background-color: var(--notification-background-color);
-          padding: 1em;
-          border-radius: var(--lumo-border-radius-m);
-        }
-
-        [part="message-container"] {
-          display: flex;
-        }
-
-        #warning-icon {
-          display: flex;
-          flex-shrink: 0;
-          align-self: center;
-          margin-right: 1em;
-        }
-
-        [part="header"].hidden {
-          display: none;
-        }
-
-        [part="header"].visible {
-          display: flex;
-          justify-content: flex-end;
-          margin-bottom: 1em;
-        }
-
-        #close-icon {
-          display: flex;
-          font-size: var(--lumo-font-size-xs);
-          height: 1em;
-          width: 1em;
-        }
-
-        [part="message"] {
-          display: flex;
-        }
-
-        [part="actions"].visible {
-          display: flex;
-          justify-content: flex-end;
-          margin-top: 1em;
-        }
-
-        [part="actions"].hidden {
-          display: none;
-        }
-
-        vaadin-button {
-          --fallback-border-radius: calc(var(--lumo-size-m) / 2);
-          color: var(--idle-notification-button-color, --notification-color);
-          background-color: var(
-            --idle-notification-button-background-color,
-            white
-          );
-          border-radius: var(
-            --lumo-border-radius-m,
-            var(--fallback-border-radius)
-          );
-        }
-
-        #extend-session.visible {
-          margin-left: 1em;
-        }
-
-        #extend-session.hidden {
-          display: none;
-        }
-
-        #redirect.hidden {
-          display: none;
-        }
-      `,
-    ];
-  }
   render() {
     return html`
       <vaadin-dialog
