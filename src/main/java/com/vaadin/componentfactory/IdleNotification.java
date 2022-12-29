@@ -26,6 +26,8 @@ import com.vaadin.flow.component.DomEvent;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dependency.Uses;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.shared.Registration;
 
@@ -33,6 +35,7 @@ import com.vaadin.flow.shared.Registration;
 @JsModule("./idle-notification.js")
 @CssImport("./idle-notification.css")
 @CssImport(value = "./vaadin-dialog-overlay.css", themeFor = "vaadin-dialog-overlay")
+@Uses(Dialog.class)
 public class IdleNotification extends Component {
 
     public static final int DEFAULT_SECONDS_BEFORE_NOTIFICATION = 60;
