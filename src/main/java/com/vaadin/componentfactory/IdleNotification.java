@@ -28,6 +28,7 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.internal.AllowInert;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.shared.Registration;
 
@@ -465,6 +466,7 @@ public class IdleNotification extends Component {
     /**
      * Used to extend the session from the client side
      */
+    @AllowInert
     @ClientCallable
     private boolean pokeServer() {
         return true;
