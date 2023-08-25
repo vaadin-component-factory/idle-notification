@@ -3,7 +3,7 @@
 
     <groupId>com.vaadin.componentfactory</groupId>
     <artifactId>idle-notification</artifactId>
-    <version>1.1.7</version>
+    <version>1.1.8</version>
     <name>Idle Notification</name>
     <description>An addon that displays a notification and actions to the user before session-timeout</description>
 
