@@ -544,7 +544,7 @@ class IdleNotification extends ThemableMixin(PolymerElement) {
     let minutesToTimeout = Math.floor(SECS_TO_TIMEOUT / 60);
     let secondsOverMinutesToTimeout = SECS_TO_TIMEOUT - minutesToTimeout * 60;
     let MINUTES_TO_TIMEOUT = String(minutesToTimeout).padStart(2, '0');
-    let SECS_OVER_MINUTES_TO_TIMEOUT = String (secondsOverMinutesToTimeout).padStart(2, '0');
+    let SECS_OVER_MINUTES_TO_TIMEOUT = String(secondsOverMinutesToTimeout).padStart(2, '0');
     this._messageContent = eval('`' + message + '`');
   }
 
