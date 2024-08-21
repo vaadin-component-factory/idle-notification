@@ -38,7 +38,8 @@ public class IdleNotification extends Component {
     public static final String DEFAULT_AFTER_EXPIRE_MESSAGE = "Your session has expired due to inactivity.";
 
     public enum MessageFormatting {
-        SECS_TO_TIMEOUT("${SECS_TO_TIMEOUT}"), SECS_MAX_IDLE_TIMEOUT("${SECS_MAX_IDLE_TIMEOUT}");
+        SECS_TO_TIMEOUT("${SECS_TO_TIMEOUT}"), SECS_MAX_IDLE_TIMEOUT("${SECS_MAX_IDLE_TIMEOUT}"),
+        SECS_AND_MINUTES_TO_TIMEOUT("${MINUTES_TO_TIMEOUT}:${SECS_OVER_MINUTES_TO_TIMEOUT}");
 
         public final String label;
 
