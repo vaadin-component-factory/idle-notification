@@ -210,6 +210,10 @@ class IdleNotification extends ThemableMixin(LitElement) {
     };
   }
 
+  createRenderRoot() {
+    return this;
+  }
+
   render() {
     return html`
       <vaadin-dialog
@@ -261,7 +265,7 @@ class IdleNotification extends ThemableMixin(LitElement) {
   firstUpdated(_changedProperties) {
     super.firstUpdated(_changedProperties);
 
-    this._dialogElement = this.shadowRoot.querySelector("vaadin-dialog");
+    this._dialogElement = this.querySelector("vaadin-dialog");
     this._dialogElement.$.overlay.addEventListener(
       "vaadin-overlay-outside-click",
       this._handleOutsideClick.bind(this)
