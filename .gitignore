@@ -23,3 +23,6 @@ webpack.generated.js
 .npmrc
 .pnpmfile.cjs
 pnpm-lock.yaml
+
+src/main/bundles/
+src/main/frontend/

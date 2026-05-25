@@ -8,14 +8,14 @@
     <description>An addon that displays a notification and actions to the user before session-timeout</description>
 
     <properties>
-        <vaadin.version>23.3.2</vaadin.version>
+        <vaadin.version>25.1.6</vaadin.version>
 
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <jetty.version>9.4.28.v20200408</jetty.version>
+        <jetty.version>12.1.9</jetty.version>
     </properties>
     <organization>
         <name>Vaadin</name>
@@ -84,12 +84,12 @@
     </pluginRepositories>
 
     <dependencies>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-        </dependency>
+		<dependency>
+		  <groupId>jakarta.servlet</groupId>
+		  <artifactId>jakarta.servlet-api</artifactId>
+		  <version>6.1.0</version>
+		  <scope>provided</scope>
+		</dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
             <!-- Replace artifactId with vaadin-core to use only free components -->
@@ -112,6 +112,11 @@
             <version>5.1.0</version>
             <scope>test</scope>
         </dependency>
+	    <dependency>
+	        <groupId>com.vaadin</groupId>
+	        <artifactId>vaadin-dev</artifactId>
+			<scope>test</scope>
+	    </dependency>
     </dependencies>
 
     <build>
@@ -151,8 +156,8 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
+				<groupId>org.eclipse.jetty.ee11</groupId>
+				<artifactId>jetty-ee11-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
                     <scanIntervalSeconds>3</scanIntervalSeconds>
